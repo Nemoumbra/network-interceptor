@@ -1,6 +1,8 @@
 
 from enum import Enum, auto
 
+from intercepted_packet import PacketInterceptedCallback
+
 
 class UDPMode(Enum):
     Disabled = auto()
@@ -18,4 +20,5 @@ class InterceptionConfig:
         self.core_arguments: dict = {}
         self.upd_mode: UDPMode = UDPMode.Disabled
         self.tcp_mode: TCPMode = TCPMode.Disabled
-        # TODO
+        self.upd_action: PacketInterceptedCallback | None = None
+        self.tcp_action: PacketInterceptedCallback | None = None
