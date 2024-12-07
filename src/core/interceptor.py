@@ -6,11 +6,11 @@ from config import InterceptionConfig, UDPMode, TCPMode
 from intercepted_packet import InterceptedPacket, PacketInterceptedCallback
 from tcp import TCPConnectionManager
 
-class  BaseInterceptor:
+class BaseInterceptor:
     def __init__(self, config: InterceptionConfig):
         self.config = config
         self._action_taken = False
-        self._tcp_manager = TCPConnectionManager()
+        self._tcp_manager = TCPConnectionManager(self)
 
     def _wrap_scapy_packet(self, pkt: Packet) -> InterceptedPacket:
         raise NotImplemented
