@@ -2,7 +2,6 @@
 from scapy.packet import Packet
 from scapy.layers.inet import IP
 from pydivert import WinDivert
-from scapy.utils import wrpcap
 
 from src.core.intercepted_packet import InterceptedPacket
 from src.core.interceptor import BaseInterceptor
