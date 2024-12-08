@@ -34,28 +34,29 @@ class WinDivertInterceptor(BaseInterceptor):
 
 
     def _run_impl(self):
-        with WinDivert(self._wd_filter) as wd:
-            for pkt in wd:
-                try:
-                    scapy_packet = IP(pkt.raw.tobytes())
-                    self._handle_packet(scapy_packet)
+        try:
+            with WinDivert(self._wd_filter) as wd:
+                for pkt in wd:
+                    try:
+                        scapy_packet = IP(pkt.raw.tobytes())
+                        self._handle_packet(scapy_packet)
 
-                    if not self._action_taken:
-                        # The packet is accepted
-                        wd.send(pkt)
-                        continue
+                        if not self._action_taken:
+                            # The packet is accepted
+                            wd.send(pkt)
+                            continue
 
-                    if self._new_packet is not None:
-                        # The packet is replaced
-                        # TODO: serialize the new packet into WinDivert format
-                        wd.send(pkt)
-                        continue
+                        if self._new_packet is not None:
+                            # The packet is replaced
+                            # TODO: serialize the new packet into WinDivert format
+                            wd.send(pkt)
+                            continue
 
-                    # The remaining case is "drop". It doesn't require special handling
+                        # The remaining case is "drop". It doesn't require special handling
 
-                except OSError as e:
-                    print(f"OS error: {e}")
-                except RuntimeError as e:
-                    print(f"Runtime error: {e}")
-                except KeyboardInterrupt:
-                    return
+                    except OSError as e:
+                        print(f"OS error: {e}")
+                    except RuntimeError as e:
+                        print(f"Runtime error: {e}")
+        except KeyboardInterrupt:
+            return

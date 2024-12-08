@@ -16,13 +16,15 @@ class WinDivertInterceptedPacket(InterceptedPacket):
     # TODO:
     def accept(self):
         self._check_action_chosen()
-        # It's really just for convenience's sake
+        # It's really just for convenience's sake, no need to do anything here
 
     def drop(self):
         self._check_action_chosen()
         self._action_taken = True
+        self._interceptor._action_taken = True
 
     def replace(self, new_packet: Packet):
         self._check_action_chosen()
         self._action_taken = True
+        self._interceptor._action_taken = True
         self._interceptor._new_packet = new_packet

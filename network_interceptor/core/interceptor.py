@@ -48,9 +48,9 @@ class BaseInterceptor:
                 self._handle_tcp_high_level(pkt)
 
     def _validate_callbacks(self):
-        if self.config.upd_mode != UDPMode.Disabled and self.config.upd_action is not None:
+        if self.config.upd_mode != UDPMode.Disabled and self.config.upd_action is None:
                 raise ValueError(f"UDP action not set despite the mode being {self.config.upd_mode}")
-        if self.config.tcp_mode != TCPMode.Disabled and self.config.tcp_action is not None:
+        if self.config.tcp_mode != TCPMode.Disabled and self.config.tcp_action is None:
                 raise ValueError(f"TCP action not set despite the mode being {self.config.tcp_mode}")
 
     def _parse_config(self):
