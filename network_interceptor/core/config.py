@@ -1,7 +1,7 @@
 
 from enum import Enum, auto
 
-from intercepted_packet import PacketInterceptedCallback
+from network_interceptor.core.intercepted_packet import PacketInterceptedCallback
 
 
 class UDPMode(Enum):

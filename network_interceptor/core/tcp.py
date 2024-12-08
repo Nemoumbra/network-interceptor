@@ -5,7 +5,9 @@ from enum import Enum, auto
 from scapy.packet import Packet
 from scapy.layers.inet import IP, TCP
 
-from network_interceptor.core.interceptor import BaseInterceptor
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from network_interceptor.core.interceptor import BaseInterceptor
 
 
 @dataclass(frozen=True)
@@ -37,7 +39,7 @@ class TCPConnection:
 
 
 class TCPConnectionManager:
-    def __init__(self, interceptor: BaseInterceptor):
+    def __init__(self, interceptor: 'BaseInterceptor'):
         self._connections: dict[Peer, TCPConnection] = {}
         self._interceptor: BaseInterceptor = interceptor
 

@@ -3,13 +3,15 @@ from scapy.packet import Packet
 
 from network_interceptor.core.intercepted_packet import InterceptedPacket
 
-from network_interceptor.core.arch.linux.nfq_interceptor import NFQueueInterceptor
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from network_interceptor.core.arch.linux.nfq_interceptor import NFQueueInterceptor
 
 
 class NFQueueInterceptedPacket(InterceptedPacket):
-    def __init__(self, scapy_packet: Packet, interceptor: NFQueueInterceptor):
+    def __init__(self, scapy_packet: Packet, interceptor: 'NFQueueInterceptor'):
         super().__init__(scapy_packet)
-        self._interceptor = interceptor
+        self._interceptor: NFQueueInterceptor = interceptor
 
     # TODO:
     def accept(self):

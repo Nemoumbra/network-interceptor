@@ -3,13 +3,15 @@ from scapy.packet import Packet
 
 from network_interceptor.core.intercepted_packet import InterceptedPacket
 
-from network_interceptor.core.arch.windows.wd_interceptor import WinDivertInterceptor
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from network_interceptor.core.arch.windows.wd_interceptor import WinDivertInterceptor
 
 
 class WinDivertInterceptedPacket(InterceptedPacket):
-    def __init__(self, scapy_packet: Packet, interceptor: WinDivertInterceptor):
+    def __init__(self, scapy_packet: Packet, interceptor: 'WinDivertInterceptor'):
         super().__init__(scapy_packet)
-        self._interceptor = interceptor
+        self._interceptor: WinDivertInterceptor = interceptor
 
     # TODO:
     def accept(self):
