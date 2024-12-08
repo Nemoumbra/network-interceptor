@@ -6,6 +6,7 @@ from network_interceptor.core.config import InterceptionConfig, UDPMode, TCPMode
 from network_interceptor.core.intercepted_packet import InterceptedPacket, PacketInterceptedCallback
 from network_interceptor.core.tcp import TCPConnectionManager
 
+
 class BaseInterceptor:
     def __init__(self, config: InterceptionConfig):
         self.config = config

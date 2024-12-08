@@ -10,6 +10,7 @@ description = "WIP"
 dependencies = [
     "scapy",
     "pydivert; platform_system=='Windows'",
+    "NetfilterQueue; platform_system=='Linux'",
 ]
 
 [project.urls]
