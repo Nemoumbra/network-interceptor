@@ -5,7 +5,7 @@ from enum import Enum, auto
 from scapy.packet import Packet
 from scapy.layers.inet import IP, TCP
 
-from src.network_interceptor.core.interceptor import BaseInterceptor
+from network_interceptor.core.interceptor import BaseInterceptor
 
 
 @dataclass(frozen=True)

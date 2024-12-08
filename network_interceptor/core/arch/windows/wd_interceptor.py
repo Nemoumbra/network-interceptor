@@ -3,11 +3,11 @@ from scapy.packet import Packet
 from scapy.layers.inet import IP
 from pydivert import WinDivert
 
-from src.network_interceptor.core.intercepted_packet import InterceptedPacket
-from src.network_interceptor.core.interceptor import BaseInterceptor
-from src.network_interceptor.core.config import InterceptionConfig
+from network_interceptor.core.intercepted_packet import InterceptedPacket
+from network_interceptor.core.interceptor import BaseInterceptor
+from network_interceptor.core.config import InterceptionConfig
 
-from src.network_interceptor.core.arch.windows.wd_intercepted_packet import WinDivertInterceptedPacket
+from network_interceptor.core.arch.windows.wd_intercepted_packet import WinDivertInterceptedPacket
 
 
 class WinDivertInterceptor(BaseInterceptor):

@@ -1,13 +1,13 @@
 
 from scapy.packet import Packet
 
-from src.network_interceptor.core.intercepted_packet import InterceptedPacket
+from network_interceptor.core.intercepted_packet import InterceptedPacket
 
-from src.network_interceptor.core.arch.windows.wd_interceptor import WinDivertInterceptor
+from network_interceptor.core.arch.linux.nfq_interceptor import NFQueueInterceptor
 
 
-class WinDivertInterceptedPacket(InterceptedPacket):
-    def __init__(self, scapy_packet: Packet, interceptor: WinDivertInterceptor):
+class NFQueueInterceptedPacket(InterceptedPacket):
+    def __init__(self, scapy_packet: Packet, interceptor: NFQueueInterceptor):
         super().__init__(scapy_packet)
         self._interceptor = interceptor
 
@@ -23,4 +23,3 @@ class WinDivertInterceptedPacket(InterceptedPacket):
     def replace(self, new_packet: Packet):
         self._check_action_chosen()
         self._action_taken = True
-        self._interceptor._new_packet = new_packet
