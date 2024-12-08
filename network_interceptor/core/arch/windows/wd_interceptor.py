@@ -21,7 +21,7 @@ class WinDivertInterceptor(BaseInterceptor):
         wrapped = WinDivertInterceptedPacket(pkt, self)
         return wrapped
 
-    def parse_config(self):
+    def _parse_config(self):
         args = self.config.core_arguments
         if "windivert" not in args:
             raise ValueError("Cannot run the interceptor: 'windivert' argument not set!")
@@ -33,8 +33,7 @@ class WinDivertInterceptor(BaseInterceptor):
         self._wd_filter = wd_config["filter"]
 
 
-    def run(self):
-        self.parse_config()
+    def _run_impl(self):
         with WinDivert(self._wd_filter) as wd:
             for pkt in wd:
                 try:

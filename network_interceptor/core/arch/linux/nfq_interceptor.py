@@ -15,9 +15,9 @@ class NFQueueInterceptor(BaseInterceptor):
         wrapped = NFQueueInterceptedPacket(pkt, self)
         return wrapped
 
-    def parse_config(self):
+    def _parse_config(self):
         pass
 
     # TODO:
-    def run(self):
-        self.parse_config()
+    def _run_impl(self):
+        pass
