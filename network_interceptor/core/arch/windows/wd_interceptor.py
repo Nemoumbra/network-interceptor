@@ -29,7 +29,7 @@ class WinDivertInterceptor(BaseInterceptor):
 
         wd_config = args["windivert"]
         if "filter" not in wd_config:
-            raise ValueError("Cannot run the interceptor: 'filter' setting not set for 'windivert'")
+            raise ValueError("Cannot run the interceptor: 'filter' setting not set for 'windivert'!")
 
         self._wd_filter = wd_config["filter"]
 

@@ -55,11 +55,14 @@ class NFQueueInterceptor(BaseInterceptor):
 
         nfq_config = args["nfqueue"]
         if "queue_num" not in nfq_config:
-            raise ValueError("Cannot run the interceptor: 'queue_num' setting not set for 'nfqueue'")
+            raise ValueError("Cannot run the interceptor: 'queue_num' setting not set for 'nfqueue'!")
 
-        self._queue_num = nfq_config["queue_num"]
+        queue_num = nfq_config["queue_num"]
+        if type(queue_num) is not int:
+            raise ValueError(f"Wrong type for the 'queue_num' parameter: expected 'int', got '{type(queue_num)}'!")
 
-    # TODO:
+        self._queue_num = queue_num
+
     def _run_impl(self):
         nfqueue = NetfilterQueue()
         nfqueue.bind(self._queue_num, self._callback)
