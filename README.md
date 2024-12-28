@@ -85,6 +85,7 @@ If you see this error, your `setuptools` or `pip` need to be updated.
 If you see an error while installing the `netfilterqueue` dependency, check *your distro's* docs
 for a guide on how to install this package.
 It usually requires installing a C library beforehand (it might be called `libnetfilter-queue-dev`).
+
 ---
 ### Usage
 The crashes on startup might be caused by the fact that both `windivert` and `nfqueue` cores need admin (root) privileges.
