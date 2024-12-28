@@ -30,7 +30,11 @@ class WinDivertInterceptor(BaseInterceptor):
         if "filter" not in wd_config:
             raise ValueError("Cannot run the interceptor: 'filter' setting not set for 'windivert'!")
 
-        self._wd_filter = wd_config["filter"]
+        wd_filter = wd_config["filter"]
+        if type(wd_filter) is not str:
+            raise ValueError(f"Wrong type for the 'filter' parameter: expected 'str', got '{type(wd_filter)}'!")
+
+        self._wd_filter = wd_filter
 
         # Do some validation here...
         res, pos, msg = WinDivert.check_filter(self._wd_filter)

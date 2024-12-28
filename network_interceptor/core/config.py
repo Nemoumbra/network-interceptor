@@ -6,7 +6,7 @@ from network_interceptor.core.intercepted_packet import PacketInterceptedCallbac
 
 class UDPMode(Enum):
     Disabled = auto()
-    Default = auto()
+    LowLevel = auto()
 
 
 class TCPMode(Enum):

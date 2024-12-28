@@ -27,6 +27,10 @@ class PcapInterceptor(BaseInterceptor):
         def callback(pkt: Packet):
             self._handle_packet(pkt)
 
+            if self._output_path == "":
+                # No output required, let's not bother with the actions
+                return
+
             if not self._action_taken:
                 # The packet is accepted
                 self._packet_list.append(pkt)
@@ -68,6 +72,9 @@ class PcapInterceptor(BaseInterceptor):
             offline=self._input_path,
             prn=self._callback,
         )
+        if self._output_path == "":
+            # Well-defined behavior: no need to write back the results
+            return
 
         with PcapWriter(self._output_path) as writer:
             writer.write(self._packet_list)
