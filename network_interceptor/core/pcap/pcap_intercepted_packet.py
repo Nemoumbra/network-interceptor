@@ -5,13 +5,13 @@ from network_interceptor.core.intercepted_packet import InterceptedPacket
 
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from network_interceptor.core.arch.windows.wd_interceptor import WinDivertInterceptor
+    from network_interceptor.core.pcap.pcap_interceptor import PcapInterceptor
 
 
-class WinDivertInterceptedPacket(InterceptedPacket):
-    def __init__(self, scapy_packet: Packet, interceptor: 'WinDivertInterceptor'):
+class PcapInterceptedPacket(InterceptedPacket):
+    def __init__(self, scapy_packet: Packet, interceptor: 'PcapInterceptor'):
         super().__init__(scapy_packet)
-        self._interceptor: WinDivertInterceptor = interceptor
+        self._interceptor: PcapInterceptor = interceptor
 
     def accept(self):
         self._check_action_chosen()

@@ -13,7 +13,6 @@ class NFQueueInterceptedPacket(InterceptedPacket):
         super().__init__(scapy_packet)
         self._interceptor: NFQueueInterceptor = interceptor
 
-    # TODO:
     def accept(self):
         self._check_action_chosen()
         # It's really just for convenience's sake

@@ -17,7 +17,6 @@ class WinDivertInterceptor(BaseInterceptor):
         self._wd_filter: str = ""
         self._new_packet: Packet | None = None
 
-
     def _wrap_scapy_packet(self, pkt: Packet) -> InterceptedPacket:
         wrapped = WinDivertInterceptedPacket(pkt, self)
         return wrapped
