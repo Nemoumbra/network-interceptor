@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "network-interceptor"
-version = "1.0.0a1"
+version = "1.0.0a2"
 requires-python = ">= 3.10"
 description = "WIP"
 dependencies = [

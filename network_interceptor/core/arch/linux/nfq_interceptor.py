@@ -6,8 +6,6 @@ from network_interceptor.core.intercepted_packet import InterceptedPacket
 from network_interceptor.core.interceptor import BaseInterceptor
 from network_interceptor.core.config import InterceptionConfig
 
-from network_interceptor.core.arch.linux.nfq_intercepted_packet import NFQueueInterceptedPacket
-
 from netfilterqueue import NetfilterQueue
 from netfilterqueue import Packet as NFQPacket
 
@@ -43,10 +41,6 @@ class NFQueueInterceptor(BaseInterceptor):
             return
 
         return callback
-
-    def _wrap_scapy_packet(self, pkt: Packet) -> InterceptedPacket:
-        wrapped = NFQueueInterceptedPacket(pkt, self)
-        return wrapped
 
     def _parse_config(self):
         args = self.config.core_arguments

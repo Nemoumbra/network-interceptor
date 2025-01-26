@@ -8,18 +8,12 @@ from network_interceptor.core.intercepted_packet import InterceptedPacket
 from network_interceptor.core.interceptor import BaseInterceptor
 from network_interceptor.core.config import InterceptionConfig
 
-from network_interceptor.core.arch.windows.wd_intercepted_packet import WinDivertInterceptedPacket
-
 
 class WinDivertInterceptor(BaseInterceptor):
     def __init__(self, config: InterceptionConfig):
         super().__init__(config)
         self._wd_filter: str = ""
         self._new_packet: Packet | None = None
-
-    def _wrap_scapy_packet(self, pkt: Packet) -> InterceptedPacket:
-        wrapped = WinDivertInterceptedPacket(pkt, self)
-        return wrapped
 
     def _parse_config(self):
         args = self.config.core_arguments

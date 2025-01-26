@@ -11,10 +11,12 @@ class BaseInterceptor:
     def __init__(self, config: InterceptionConfig):
         self.config = config
         self._action_taken = False
+        self._new_packet: Packet | None = None
         self._tcp_manager = TCPConnectionManager(self)
 
     def _wrap_scapy_packet(self, pkt: Packet) -> InterceptedPacket:
-        raise NotImplemented
+        wrapped = InterceptedPacket(pkt, self)
+        return wrapped
 
     def _handle_low_level_packet(self, pkt: Packet, callback: PacketInterceptedCallback):
         wrapped = self._wrap_scapy_packet(pkt)

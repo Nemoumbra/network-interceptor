@@ -9,8 +9,6 @@ from network_interceptor.core.intercepted_packet import InterceptedPacket
 from network_interceptor.core.interceptor import BaseInterceptor
 from network_interceptor.core.config import InterceptionConfig
 
-from network_interceptor.core.pcap.pcap_intercepted_packet import PcapInterceptedPacket
-
 
 class PcapInterceptor(BaseInterceptor):
     def __init__(self, config: InterceptionConfig):
@@ -60,11 +58,6 @@ class PcapInterceptor(BaseInterceptor):
         if type(output) is not str:
             raise ValueError(f"Wrong type for the 'output' parameter: expected 'str', got '{type(output)}'!")
         self._output_path = output
-
-
-    def _wrap_scapy_packet(self, pkt: Packet) -> InterceptedPacket:
-        wrapped = PcapInterceptedPacket(pkt, self)
-        return wrapped
 
     def _run_impl(self):
         # This returns on its own, because the input pcap file is finite
